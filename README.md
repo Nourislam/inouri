@@ -9,7 +9,7 @@ A minimalist, elegant personal portfolio website inspired by Apple's design phil
 ![Mobile First](https://img.shields.io/badge/Mobile-First-green.svg)
 
 ## ✨ Live Demo
-[View Demo](https://your-username.github.io/apple-portfolio) • [Download](https://github.com/your-username/apple-portfolio/archive/main.zip)
+[View Demo](https://nouriislam.github.io/inouri) • [Download](https://github.com/Nouriislam/inouri/main.zip)
 
 ## 🎯 Features
 
@@ -59,8 +59,8 @@ A minimalist, elegant personal portfolio website inspired by Apple's design phil
 
 ### 1. Clone or Download
 ```bash
-git clone https://github.com/your-username/apple-portfolio.git
-cd apple-portfolio
+git clone https://github.com/nouriislam/inouri.git
+cd inouri
 ```
 
 ### 2. Open in Browser
