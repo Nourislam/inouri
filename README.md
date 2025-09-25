@@ -9,7 +9,7 @@ A minimalist, elegant personal portfolio website inspired by Apple's design phil
 ![Mobile First](https://img.shields.io/badge/Mobile-First-green.svg)
 
 ## ✨ Live Demo
-[View Demo](https://nouriislam.github.io/inouri) • [Download](https://github.com/Nouriislam/inouri/main.zip)
+[View Demo](https://inouri.netlify.app) • [Download](https://github.com/Nourislam/inouri/main.zip)
 
 ## 🎯 Features
 
@@ -45,8 +45,8 @@ A minimalist, elegant personal portfolio website inspired by Apple's design phil
 │   📍 Location           │
 ├─────────────────────────┤
 │   Social Media Grid     │
-│   [□][□][□]            │
-│   [□][□][□]            │
+│   [□][□][□]             │
+│   [□][□][□]             │
 ├─────────────────────────┤
 │   Action Buttons        │
 │   [Download CV - EN]    │
@@ -59,7 +59,7 @@ A minimalist, elegant personal portfolio website inspired by Apple's design phil
 
 ### 1. Clone or Download
 ```bash
-git clone https://github.com/nouriislam/inouri.git
+git clone https://github.com/nourislam/inouri.git
 cd inouri
 ```
 
@@ -311,8 +311,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Islam Nouri**
 - Email: inouri.dev@gmail.com
-- LinkedIn: [islam-nouri](https://linkedin.com/in/islam-nouri)
-- GitHub: [@islam-nouri](https://github.com/islam-nouri)
+- LinkedIn: [islam-nouri](https://www.linkedin.com/in/inouri/)
+- GitHub: [@islam-nouri](https://github.com/Nourislam)
 
 ## 📊 Project Stats
 
