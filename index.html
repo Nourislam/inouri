@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Islam Nouri - AI & Web Engineer</title>
+    <link rel="icon" href="/logo-inouri.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #151515;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-tertiary: #6b6b6b;
+            --accent-primary: #667eea;
+            --accent-secondary: #764ba2;
+            --accent-green: #10b981;
+            --border-color: #2a2a2a;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 32px rgba(102, 126, 234, 0.2);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, #0f0f1e 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 24px 20px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            text-align: center;
+            padding: 32px 0 40px;
+            position: relative;
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 24px;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg), 0 0 0 4px rgba(102, 126, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: profilePulse 4s ease-in-out infinite;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .profile-image::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes profilePulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: var(--shadow-lg), 0 0 0 4px rgba(102, 126, 234, 0.1);
+            }
+            50% { 
+                transform: scale(1.02);
+                box-shadow: var(--shadow-lg), 0 0 0 8px rgba(102, 126, 234, 0.15);
+            }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translate(-100%, -100%) rotate(45deg); }
+            100% { transform: translate(100%, 100%) rotate(45deg); }
+        }
+
+        .profile-name {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .profile-title {
+            font-size: 18px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 12px;
+            animation: fadeInUp 0.8s ease-out 0.1s backwards;
+        }
+
+        .profile-tagline {
+            font-size: 15px;
+            color: var(--text-tertiary);
+            font-weight: 400;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1.5px solid var(--accent-green);
+            border-radius: 24px;
+            color: var(--accent-green);
+            font-size: 13px;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.3s backwards, statusBlink 2s infinite;
+        }
+
+        .status::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes statusBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md), 0 0 24px rgba(102, 126, 234, 0.15);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-title {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title::before {
+            content: '';
+            width: 3px;
+            height: 12px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        /* Contact Items */
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            margin: 0 -16px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .contact-item:not(:last-child) {
+            margin-bottom: 4px;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 0 2px 2px 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(102, 126, 234, 0.08);
+            transform: translateX(4px);
+        }
+
+        .contact-item:hover::before {
+            opacity: 1;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+            border-radius: 12px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .contact-text {
+            flex: 1;
+            font-size: 16px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Social Grid */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .social-item {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 20px 12px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .social-item:hover {
+            transform: translateY(-4px) scale(1.05);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-md), 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .social-item:hover::before {
+            opacity: 0.1;
+        }
+
+        .social-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: block;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.4s ease;
+        }
+
+        .social-item:hover .social-icon {
+            transform: scale(1.15) rotateY(180deg);
+        }
+
+        .social-icon svg, .social-icon img{
+            width: 32px;
+            height: 32px;
+            filter: brightness(0.9);
+            transition: filter 0.3s ease;
+        }
+
+        .social-item:hover .social-icon img {
+            filter: brightness(1.2);
+        }
+
+        .social-name {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            display: block;
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease;
+        }
+
+        .social-item:hover .social-name {
+            color: var(--text-primary);
+        }
+
+        /* Buttons */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 16px 24px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md), 0 0 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-share {
+            background: linear-gradient(135deg, var(--accent-green) 0%, #059669 100%);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-share:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md), 0 0 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-icon {
+            font-size: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 48px 20px 20px;
+            color: var(--text-tertiary);
+            font-size: 13px;
+        }
+
+        .footer p:first-child {
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .footer p:last-child {
+            color: var(--text-tertiary);
+            font-size: 12px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            padding: 14px 28px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            font-size: 14px;
+            font-weight: 500;
+            backdrop-filter: blur(20px);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-card);
+            padding: 20px 32px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+        }
+
+        .loading-spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 420px) {
+            .container {
+                padding: 20px 16px;
+            }
+            
+            .profile-name {
+                font-size: 32px;
+            }
+            
+            .social-grid {
+                gap: 10px;
+            }
+        }
+
+        /* Scroll animations */
+        .card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardFadeIn 0.6s ease-out forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes cardFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <div class="container">
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <div class="profile-image-wrapper">
+                <div class="profile-image">
+                    <img src="/inouri_img.jpg" alt="Islam Nouri"/>
+                </div>
+            </div>
+            
+            <h1 class="profile-name">Islam Nouri</h1>
+            <p class="profile-title">AI & Web Engineer</p>
+            <p class="profile-tagline">Building the Future with Code</p>
+            <div class="status">Available for Projects</div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="card">
+            <h2 class="card-title">Contact</h2>
+            <div class="contact-item" onclick="copyToClipboard('+213 554025284')">
+                <div class="contact-icon">📱</div>
+                <span class="contact-text">+213 554025284</span>
+            </div>
+            <div class="contact-item" onclick="copyToClipboard('inouri.dev@gmail.com')">
+                <div class="contact-icon">📧</div>
+                <span class="contact-text">inouri.dev@gmail.com</span>
+            </div>
+            <div class="contact-item" onclick="copyToClipboard('Oum El Bouaghi, Algeria')">
+                <div class="contact-icon">📍</div>
+                <span class="contact-text">Oum El Bouaghi, Algeria</span>
+            </div>
+        </div>
+
+        <!-- Social Media -->
+        <div class="card">
+            <h2 class="card-title">Connect</h2>
+            <div class="social-grid">
+                <a href="https://www.linkedin.com/in/inouri/" class="social-item" target="_blank">
+                    <span class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24" role="img">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </span>
+                    <span class="social-name">LinkedIn</span>
+                </a>
+                <a href="https://github.com/Nourislam" class="social-item" target="_blank">
+                    <span class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg"  fill="#fff" viewBox="0 0 24 24" role="img">
+                            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577
+                                    0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757
+                                    -1.09-.744.083-.729.083-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.809 1.305 3.495.998
+                                    .108-.776.418-1.305.76-1.605-2.665-.305-5.466-1.332-5.466-5.93 0-1.31.47-2.381 1.235-3.221
+                                    -.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405
+                                    1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176
+                                    .765.84 1.23 1.911 1.23 3.221 0 4.61-2.805 5.62-5.475 5.92.435.373.825 1.096.825 2.213
+                                     0 1.596-.015 2.883-.015 3.273 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297
+                                    24 5.67 18.627.297 12 .297z"/>
+                        </svg>
+                    </span>
+                    <span class="social-name">GitHub</span>
+                </a>
+                <a href="https://x.com/inouri_dev" class="social-item" target="_blank">
+                    <span class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24" role="img">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </span>
+                    <span class="social-name">X</span>
+                </a>
+                <a href="https://www.instagram.com/inouri.dev/" class="social-item" target="_blank">
+                    <span class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24" role="img">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </span>
+                    <span class="social-name">Instagram</span>
+                </a>
+                <a href="https://web.facebook.com/inouri.dev/" class="social-item" target="_blank">
+                    <span class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24" role="img">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </span>
+                    <span class="social-name">Facebook</span>
+                </a>
+                <a href="https://www.inouri.dev" class="social-item" target="_blank">
+                    <span class="social-icon">
+                        <svg width="424" height="424" viewBox="0 0 424 424" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="211.788" cy="211.788" r="209.288" fill="white" stroke="black" stroke-width="5"/>
+<g filter="url(#filter0_di_5_2)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M327.161 203.902C335.638 198.035 343.303 190.619 348.821 182.265C356.481 170.667 361.024 157.292 362.012 143.428C363 129.564 360.4 115.68 354.461 103.113C348.523 90.5464 339.555 79.8168 328.217 71.7778L325.196 70C333.717 78.2778 342.11 111.083 342.449 125.988C342.789 140.894 340.196 163 331.467 167.5C314.758 177.658 302.745 192.423 296.601 210.842C293.189 208.827 290.025 206.367 287.199 203.503C281.563 197.792 277.551 190.758 275.478 183.124C275.472 182.744 275.471 182.364 275.475 181.984C275.565 172.944 278.365 163.711 283.342 156.206C287.769 149.532 293.832 144.142 300.916 140.527C301.473 140.313 302.025 140.09 302.573 139.857C311.827 135.92 319.696 129.276 325.129 120.776C327.987 116.304 330.097 111.436 331.408 106.363C332.755 101.154 333.261 95.7294 332.874 90.2942C333.242 95.463 331.768 100.691 329.514 105.7C327.426 110.338 324.67 114.788 322.086 118.831C317.628 125.805 311.403 131.433 304.084 135.167C303.493 135.394 302.908 135.631 302.328 135.88C301.353 136.297 300.394 136.744 299.451 137.22L299.437 137.226L299.437 137.227C291.732 141.124 285.138 146.965 280.333 154.21C277.132 159.036 274.813 164.351 273.447 169.908C271.642 159.379 267.768 149.298 262.033 140.254C255.568 130.058 247.729 121.912 237.5 115.5C229.872 110.907 220.58 108.099 211.676 108.003C202.772 107.907 194.226 110.073 186.5 114.5C185.917 114.844 185.342 115.194 184.774 115.55C174.772 121.809 167.134 129.763 160.677 139.797C154.367 149.603 150.258 160.647 148.617 172.169C147.26 166.517 144.919 161.111 141.668 156.21C136.862 148.965 130.269 143.124 122.563 139.227L122.563 139.226L122.55 139.221C121.607 138.744 120.647 138.297 119.673 137.88C119.092 137.631 118.507 137.394 117.916 137.167C110.597 133.432 104.372 127.805 99.9142 120.831C97.3305 116.788 94.5739 112.338 92.4866 107.7C90.232 102.691 88.7582 97.463 89.1264 92.2942C88.7392 97.7294 89.2452 103.154 90.5918 108.363C91.9035 113.436 94.0127 118.304 96.8711 122.776C102.304 131.276 110.173 137.92 119.428 141.857C119.975 142.09 120.527 142.313 121.084 142.527C128.168 146.142 134.231 151.532 138.658 158.206C143.834 166.01 146.523 175.191 146.383 184.54C144.104 191.986 139.963 198.801 134.268 204.297C131.648 206.825 129.105 208.95 126.493 210.696C120.312 192.448 108.347 177.813 91.75 167.722C83.0211 163.222 80.4277 141.117 80.7675 126.211C81.1072 111.305 89.5001 78.4999 98.0211 70.2222L95.0001 71.9999C83.6617 80.039 74.6942 90.7685 68.7558 103.335C62.8173 115.902 60.2167 129.786 61.2046 143.65C62.1926 157.514 66.7357 170.89 74.396 182.487C80.2338 191.325 87.732 198.904 96.4415 204.82L96.424 204.855C96.5137 204.9 96.6034 204.945 96.6929 204.99C99.3353 206.771 102.088 208.399 104.939 209.863L104.977 209.842C107.847 211.772 110.586 213.894 113.175 216.194C110.946 216.627 108.571 216.893 106 217H100C98.8956 217 98.0001 217.895 98.0001 219C98.0001 220.105 98.8956 221 100 221H104C117 221.5 127.624 215.888 136.856 206.979C143.016 201.033 147.495 193.659 149.955 185.602L149.969 185.602L149.97 185.583L149.971 185.55C151.086 181.886 151.783 178.081 152.032 174.205C153.343 162.371 157.395 151.863 163.847 141.837C170.352 131.727 177.648 124.114 188 118C188.581 117.667 189.169 117.347 189.764 117.038C196.49 113.551 204.065 111.647 211.636 111.729C219.211 111.811 227.483 114.295 234.254 117.998C234.442 118.101 234.629 118.205 234.814 118.309C235.347 118.645 235.875 118.987 236.399 119.335C245.402 125.317 253.053 133.13 258.85 142.272C264.894 151.804 268.77 162.545 270.21 173.734C270.236 174.211 270.269 174.687 270.308 175.162C271.281 186.809 276.308 197.772 284.547 206.121C292.786 214.47 303.682 219.641 315.315 220.767C315.599 220.795 315.883 220.82 316.168 220.842L316.168 220.907L317.068 220.906C317.148 220.911 317.228 220.915 317.307 220.92L317.31 220.92L317.31 220.906L322.002 220.9C323.052 220.899 323.901 220.047 323.9 218.998C323.899 217.948 323.047 217.099 321.998 217.1L316.212 217.107C313.97 216.916 311.756 216.563 309.585 216.055C312.037 213.811 314.629 211.729 317.344 209.823C320.57 208.148 323.755 206.239 326.835 204.126L327.005 204.041C327.065 204.011 327.125 203.981 327.185 203.95L327.161 203.902ZM326.901 71.2863C326.38 70.8655 325.814 70.4382 325.196 70L326.901 71.2863ZM325.644 200.869L325.778 200.775L325.911 200.681L325.644 200.867L325.644 200.869ZM192.123 229.815L192.101 229.821C198.996 249.236 201.22 270.035 198.552 290.526C195.685 312.544 187.266 333.459 174.101 351.312C173.848 351.655 173.593 351.997 173.336 352.338C173.428 355.891 174.21 359.398 175.644 362.661C177.296 366.421 179.772 369.762 182.889 372.437C186.006 375.112 189.684 377.052 193.651 378.115C194.194 378.26 194.739 378.389 195.288 378.5L224 378.5V378.564C224.644 378.442 225.285 378.296 225.921 378.126C229.895 377.069 233.58 375.131 236.703 372.456C239.827 369.781 242.309 366.438 243.965 362.675C245.403 359.407 246.187 355.896 246.279 352.338C246.022 351.997 245.767 351.655 245.514 351.312C232.349 333.459 223.93 312.544 221.063 290.526C218.395 270.035 220.619 249.236 227.513 229.821L227.492 229.815C227.972 228.212 228.531 226.637 229.166 225.097C231.341 219.82 234.41 214.942 238.247 210.683C243.205 205.181 249.323 200.849 256.159 198C251.589 199.904 248.127 204.353 244.828 208.594L244.828 208.594C243.565 210.216 242.326 211.808 241.058 213.216C237.871 216.753 235.258 220.751 233.302 225.065L233.412 225.11C224.936 245.632 221.984 268.016 224.851 290.033C227.717 312.039 236.295 332.91 249.732 350.571L249.751 350.596L249.754 350.596C249.777 351.264 249.777 351.931 249.757 352.597C249.633 356.549 248.752 360.447 247.154 364.078C245.287 368.32 242.49 372.088 238.969 375.102C235.449 378.117 231.295 380.301 226.817 381.493C222.983 382.513 218.996 382.784 215.072 382.298C214.432 382.219 213.793 382.12 213.157 382H206.454L206.454 382.001L206.444 382.003C205.79 382.125 205.134 382.226 204.477 382.306C201.331 382.689 198.146 382.585 195.033 382H195V381.994C194.245 381.851 193.495 381.68 192.75 381.48C188.278 380.282 184.133 378.095 180.62 375.081C177.107 372.066 174.317 368.301 172.454 364.063C170.861 360.436 169.982 356.543 169.858 352.597C169.837 351.931 169.838 351.264 169.86 350.596L169.863 350.596L169.883 350.571C183.32 332.91 191.898 312.039 194.764 290.033C197.631 268.016 194.679 245.632 186.202 225.11L186.313 225.065C184.357 220.751 181.744 216.753 178.557 213.216C177.278 211.797 176.033 210.19 174.765 208.554C171.666 204.557 168.431 200.382 164.238 198.334C170.759 201.182 176.6 205.392 181.368 210.683C185.205 214.942 188.273 219.819 190.449 225.097C191.084 226.637 191.643 228.212 192.123 229.815ZM164.238 198.334C163.993 198.227 163.747 198.122 163.5 198.019L163.493 198.016L163.456 198H163.5C163.749 198.104 163.995 198.215 164.238 198.334ZM206.506 366.588C207.704 368.235 210.16 368.235 211.358 366.588L220.436 354.103C221.878 352.12 220.462 349.338 218.01 349.338H199.854C197.402 349.338 195.986 352.12 197.428 354.103L206.506 366.588ZM100.947 227.179H95C93.8954 227.179 93 226.283 93 225.179C93 224.074 93.8954 223.179 95 223.179H108C108.144 223.179 108.285 223.194 108.42 223.223C126.465 222.624 144.268 228.082 158.934 238.835C174.021 249.896 184.763 265.808 189.421 283.814C189.463 283.908 189.498 284.006 189.526 284.108L191.474 291.249C191.764 292.315 191.136 293.414 190.07 293.705C189.005 293.995 187.905 293.367 187.615 292.302L186.186 287.061C184.742 283.902 182.59 282.981 179.927 281.841L179.907 281.833C179.784 281.78 179.66 281.727 179.535 281.673C177.548 280.818 175.076 280.258 172.698 280.177L171.824 280.242C167.829 281.133 163.697 281.222 159.667 280.502C155.637 279.783 151.791 278.27 148.35 276.052C144.91 273.833 141.945 270.954 139.627 267.58C138.058 265.295 136.897 263.402 136.051 261.174L136.045 261.178L136.032 261.124C135.65 260.111 135.333 259.028 135.072 257.807C132.707 250.733 128.502 244.363 123.128 239.137C116.987 233.166 109.306 229.026 100.947 227.179ZM231.124 283.636C231.082 283.729 231.046 283.828 231.019 283.93L229.071 291.071C228.78 292.136 229.409 293.236 230.474 293.526C231.54 293.817 232.639 293.189 232.93 292.123L234.513 286.317C234.53 286.284 234.547 286.251 234.564 286.218C234.588 286.172 234.611 286.127 234.635 286.083C236.07 283.4 238.111 282.527 240.597 281.463L240.821 281.367L240.989 281.295C243.569 280.185 246.391 279.797 249.157 280.158C249.666 280.264 250.177 280.357 250.69 280.437L250.711 280.442L250.711 280.44C254.079 280.962 257.514 280.924 260.878 280.324C264.908 279.605 268.754 278.092 272.194 275.873C275.635 273.655 278.6 270.775 280.918 267.401C282.487 265.117 283.648 263.224 284.494 260.996L284.5 261L284.513 260.946C284.895 259.933 285.212 258.85 285.473 257.628C287.838 250.555 292.043 244.184 297.417 238.959C303.557 232.988 311.239 228.848 319.598 227H325.545C326.649 227 327.545 226.105 327.545 225C327.545 223.896 326.649 223 325.545 223H312.545C312.401 223 312.26 223.015 312.124 223.044C294.08 222.446 276.277 227.904 261.611 238.656C246.524 249.717 235.782 265.629 231.124 283.636Z" fill="black"/>
+</g>
+<defs>
+<filter id="filter0_di_5_2" x="61" y="70" width="303.217" height="314.533" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="1" dy="1"/>
+<feGaussianBlur stdDeviation="0.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.8 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_5_2"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_5_2" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="1" dy="1"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.133333 0 0 0 0 0.133333 0 0 0 0 0.133333 0 0 0 0.4 0"/>
+<feBlend mode="normal" in2="shape" result="effect2_innerShadow_5_2"/>
+</filter>
+</defs>
+                        </svg>
+                    </span>
+                    <span class="social-name">Portfolio</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="card">
+            <h2 class="card-title">Resume & Share</h2>
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="downloadCV('english')">
+                    <span class="btn-icon">🇬🇧</span>
+                    <span>Download CV - English</span>
+                </button>
+                <button class="btn btn-secondary" onclick="downloadCV('french')">
+                    <span class="btn-icon">🇫🇷</span>
+                    <span>Download CV - Français</span>
+                </button>
+                <button class="btn btn-share" onclick="shareProfile()">
+                    <span class="btn-icon">🔗</span>
+                    <span>Share Profile</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2024 Islam Nouri • Crafted with ❤️</p>
+            <p>React Native • TypeScript • Supabase</p>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('✓ Copied to clipboard!');
+            }).catch(() => {
+                showToast('✗ Failed to copy');
+            });
+        }
+
+        function downloadCV(language) {
+            showLoading(true);
+            
+            setTimeout(() => {
+                showLoading(false);
+                
+                const cvUrl = language === 'english' ? '/en.pdf' : '/fr.pdf';
+                
+                const link = document.createElement('a');
+                link.href = cvUrl;
+                link.download = cvUrl;
+                link.click();
+                
+                showToast(`📄 Downloading ${language === 'english' ? 'English' : 'French'} CV...`);
+            }, 1000);
+        }
+
+        function shareProfile() {
+            const shareData = {
+                title: 'Islam Nouri - AI & Web Engineer',
+                text: 'Check out my professional profile! Specialized in React Native, TypeScript, and Supabase.',
+                url: window.location.href
+            };
+
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                navigator.share(shareData)
+                    .then(() => showToast('✓ Thanks for sharing!'))
+                    .catch((err) => {
+                        if (err.name !== 'AbortError') {
+                            copyToClipboard(window.location.href);
+                        }
+                    });
+            } else {
+                copyToClipboard(window.location.href);
+                showToast('🔗 Link copied to clipboard!');
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function showLoading(show) {
+            document.querySelector('.loading').style.display = show ? 'block' : 'none';
+        }
+
+        // Haptic feedback
+        function addHaptic(element) {
+            element.addEventListener('touchstart', () => {
+                if (navigator.vibrate) {
+                    navigator.vibrate(10);
+                }
+            });
+        }
+
+        document.querySelectorAll('.btn, .social-item, .contact-item').forEach(addHaptic);
+
+        // Prevent context menu on long press for better mobile experience
+        document.addEventListener('contextmenu', (e) => {
+            if (e.target.closest('.btn, .social-item, .contact-item')) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
